@@ -30,4 +30,17 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin: Admin
+  categories: All categories
+  archived: Archived
+  draft: Draft
+  title:
+    title_head: Bulletin board
+    title_main: Bulletins
+  home: Home
+  back: Back
+  published: Published
+  search: Search
+  rejected: Reject
+  reset: Reset
+  under_moderation: Under Moderation

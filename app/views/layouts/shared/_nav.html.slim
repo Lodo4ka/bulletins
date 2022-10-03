@@ -1,0 +1,33 @@
+header.p-3.bg-dark.text-white
+  .container
+    .nav.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
+      ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
+        li.nav-item.me-2
+          = link_to root_path, class: 'nav-link text-white' do
+            = t('home')
+        / - if user_signed_in?
+        /   li
+        /     = link_to t('bulletin.user'), profile_path ,class: 'nav-link text-white'
+        /   li
+        /     = link_to t('bulletin.new'), new_bulletin_path, class: 'nav-link text-white'
+      ul.nav.col-12.col-lg-auto.mb-2.mb-md-0
+        - if user_signed_in? && current_user.admin?
+          / li.nav-item.me-2
+          /   = link_to t('admin'), admin_path, class: 'nav-link text-white'
+        li.nav-item.me-2
+        - if user_signed_in?
+          li.nav-item.me-2
+            = link_to session_path, class: 'nav-link text-white', method: :delete do
+              = t('user.log_out')
+        - else
+          li.nav-item.me-2
+            = button_to auth_request_path('github'), method: :post, class: 'btn text-white' do
+              span.bi.bi-github.me-2
+                / = image_tag asset_path("assets/images/github.svg")
+                / = image_tag 'github.svg'
+              = t('user.log_in')
+      ul.nav.col-12.col-lg-auto.mb-2.mb-md-0
+        li
+          - I18n.available_locales.without(I18n.locale).each do |locale|
+            = link_to url_for(locale: locale) do
+              = image_tag asset_path("media/images/flag-#{locale}.svg"), width: 25, alt: "switch language to #{locale}"
